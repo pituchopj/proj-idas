@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Nosso Cantinho</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff0f5;
+      text-align: center;
+      color: #333;
+    }
+    header {
+      background: #ff6699;
+      color: white;
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    header h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .voltar {
+      background: white;
+      color: #ff6699;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    section {
+      display: none;
+      min-height: 100vh;
+      padding: 80px 40px 40px; /* espaço extra por causa do header */
+    }
+    section.active {
+      display: block;
+      animation: fadeIn 0.7s;
+    }
+    button, .next {
+      background: #ff6699;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 30px;
+      transition: 0.3s;
+    }
+    button:hover, .next:hover {
+      background: #e75480;
+    }
+    .next {
+      display: inline-block;
+      margin-top: 40px;
+    }
+    .dificuldade {
+      margin: 15px 0;
+      padding: 12px;
+      background: #ffe6ef;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .texto {
+      display: none;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Cartinha Virtual 💕</h2>
+    <button class="voltar" onclick="voltar()">⬅ Voltar</button>
+  </header>
+  <section id="inicio" class="active">
+    <h1>Para Yasmin💕</h1>
+    <p>Para saber mais com a melhor explicação que eu consigo clique abaixo ⬇️</p>
+    <button onclick="irPara('proscontras')">Começar</button>
+  </section>
+  <section id="proscontras">
+    <h1>Prós & Contras</h1>
+    <p><b>Prós:</b> sou legal, te amo muito,sei jogar clash, gosto de tu, consigo te aguentar,etc </p>
+    <p><b>Contras:</b> sou eu, nao consigo explicar direito, encho o saco.</p>
+    <p>obs: são poucos contras e muitos prós😊</p>
+    <span class="next" onclick="irPara('dificuldades')">➡️</span>
+  </section>
+  <section id="dificuldades">
+    <h1> Dificuldades</h1>
+    <div class="dificuldade" onclick="mostrarTexto(this)">
+      Eu
+      <div class="texto">Mesmo assim, eu ainda gosto muito de tu e eu acho que isso já compensa o problema.💖</div>
+    </div>
+    <div class="dificuldade" onclick="mostrarTexto(this)">
+      Idade
+      <div class="texto">Como somos muito novinhos, é um probleminha, mas como eu já disse né, por mim espero centenas de milhares de anos 🥰</div>
+    </div>
+    <div class="dificuldade" onclick="mostrarTexto(this)">
+      Não expressamento
+      <div class="texto">Infelizmente o joãozinho pedrinho não sabe falar muito de seus pobres sentimentos, mas ele jura que ele tenta e tenta muito mesmo😔 </div>
+    </div>
+    <span class="next" onclick="irPara('declaracao')">➡️</span>
+</section>
+  </section>
+  <section id="declaracao">
+    <h1> 💌</h1>
+    <p>Infelizmente pra sua tristeza, eu te amo muito mesmo tu não achando e eu como um ótimo cachorrinho não largo o osso fácil, então é isso, te amo e juro que vou aprender a falar😄,e eu gosto de ti por motivos infinitos que não dar nem pra escrever tudo, mas vou citar alguns:
+        <ul>
+            <li></li>
+            <li>Sua risada</li>
+            <li>Seu jeito não fofo</li>
+            <li>Seu jeito fofo</li>
+            <li>Seus olhinhos</li>
+            <li>Seu humor(bem ruim</li>
+            <li>Seu amor(nao comigo ne </li>
+            <li>Seu carinho(as vezes</li>
+            <li>Seu abraço</li>
+            <li>Sua alegria</li>
+            <li>Ser muito boa conselheira</li>
+            <li>Ser muito inteligente e esforçada</li>
+            <li>E muitissimo generosa, por me fazer feliz</li>
+        </ul>
+    </p>
+  </section>
+
+  <script>
+    let historico = ['inicio'];
+
+    function irPara(pagina) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(pagina).classList.add('active');
+      historico.push(pagina);
+    }
+
+    function voltar() {
+      if (historico.length > 1) {
+        historico.pop();
+        const ultima = historico[historico.length - 1];
+        document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(ultima).classList.add('active');
+      }
+    }
+
+    function mostrarTexto(el) {
+      const texto = el.querySelector('.texto');
+      texto.style.display = texto.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>
